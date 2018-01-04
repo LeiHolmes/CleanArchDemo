@@ -1,0 +1,31 @@
+apply plugin: 'com.android.library'
+
+def globalConfiguration = rootProject.extensions.getByName("ext")
+def presentationDependencies = rootProject.ext.presentationDependencies
+
+android {
+    compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
+    defaultConfig {
+        minSdkVersion globalConfiguration["androidMinSdkVersion"]
+        targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
+        versionCode globalConfiguration["androidVersionCode"]
+        versionName globalConfiguration["androidVersionName"]
+        testInstrumentationRunner globalConfiguration["testInstrumentationRunner"]
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation presentationDependencies.appcompat_v7
+    testImplementation presentationDependencies.junit
+    androidTestImplementation presentationDependencies.runner
+    androidTestImplementation presentationDependencies.espresso
+}

@@ -1,0 +1,36 @@
+apply plugin: 'com.android.application'
+
+def globalConfiguration = rootProject.extensions.getByName("ext")
+def presentationDependencies = rootProject.ext.presentationDependencies
+
+android {
+    compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
+    defaultConfig {
+        applicationId globalConfiguration["androidApplicationId"]
+        minSdkVersion globalConfiguration["androidMinSdkVersion"]
+        targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
+        versionCode globalConfiguration["androidVersionCode"]
+        versionName globalConfiguration["androidVersionName"]
+        testInstrumentationRunner globalConfiguration["testInstrumentationRunner"]
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation project(':data')
+    implementation project(':domain')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation presentationDependencies.appcompat_v7
+    testImplementation presentationDependencies.junit
+    androidTestImplementation presentationDependencies.runner
+    androidTestImplementation presentationDependencies.espresso
+}
