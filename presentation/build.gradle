@@ -30,7 +30,11 @@ dependencies {
     implementation project(':domain')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation presentationDependencies.appcompat_v7
+    implementation presentationDependencies.rxJava
+    implementation presentationDependencies.rxAndroid
+    implementation presentationDependencies.butterknife
     testImplementation presentationDependencies.junit
+    annotationProcessor presentationDependencies.butterknife_compiler
     androidTestImplementation presentationDependencies.runner
     androidTestImplementation presentationDependencies.espresso
 }

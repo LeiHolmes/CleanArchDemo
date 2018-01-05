@@ -23,9 +23,10 @@ android {
 }
 
 dependencies {
-    implementation project(':data')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation presentationDependencies.appcompat_v7
+    implementation presentationDependencies.rxJava
+    implementation presentationDependencies.rxAndroid
     testImplementation presentationDependencies.junit
     androidTestImplementation presentationDependencies.runner
     androidTestImplementation presentationDependencies.espresso
